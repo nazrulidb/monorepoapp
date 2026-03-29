@@ -55,14 +55,12 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # Login to Docker Hub on EC2 (optional if public repo)
-            #echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+            # 1. Remove the duplicate yaml file if it exists
+            rm -f ~/docker-compose.yaml
             
-            # Pull the latest image
+            # 2. Go to the home directory
+            cd ~
+            
+            # 3. Pull and Up
             docker compose pull
-            
-            # Restart the container
             docker compose up -d --remove-orphans
-            
-            # Clean up old images to save space
-            docker image prune -f
