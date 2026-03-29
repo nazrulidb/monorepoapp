@@ -1,3 +1,4 @@
+version: '3.8'
 services:
   flatris:
     # Change from ${DOCKERHUB_USERNAME} to your actual username
