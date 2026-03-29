@@ -1,18 +1,12 @@
-version: '3.8'
-
 services:
   flatris:
-    image: ${DOCKERHUB_USERNAME}/flatris-app:latest
+    # Change from ${DOCKERHUB_USERNAME} to your actual username
+    image: nazrulidb/flatris-app:latest
     container_name: flatris-production
     restart: always
     ports:
-      - "80:3000"  # Maps Port 80 on EC2 to Port 3000 in Container
+      - "80:3000"
     environment:
       - NODE_ENV=production
       - PORT=3000
-    # Add logging limits so your EC2 disk doesn't fill up
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+
